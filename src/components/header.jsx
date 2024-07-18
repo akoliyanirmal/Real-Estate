@@ -21,7 +21,7 @@ const Header = () => {
       className="fixed top-0 left-0 w-full h-20 shadow-xl flex justify-between items-center z-40 ease-in duration-300"
     >
       {/* Menu + logo */}
-      <div className="max-w-[1300px] mx-auto px-4 flex justify-between items-center w-full">
+      <div className="mx-auto px-8 flex justify-between items-center w-full">
         <div>
           <Link href="/">
             <Image height={80} width={80} src={logo} alt="logo" />
@@ -29,7 +29,7 @@ const Header = () => {
         </div>
 
         {/* Navbar Links - desktop */}
-        <ul className="hidden sm:flex items-center space-x-8">
+        <ul className="hidden sm:flex items-center space-x-8 text-black">
           <li className="hover:text-orange-500">
             <Link href="/">Home</Link>
           </li>
