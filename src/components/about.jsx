@@ -38,7 +38,7 @@ export default function About({
 
       <div className="flex flex-col sm:flex-row justify-center items-center mt-[50px] ml-[28px]">
         <div
-          className="bg-white py-36 px-10 h-[160px] w-[350px] mr-[30px] flex flex-col justify-center items-center rounded-[10px] shadow-md mb-5 dark:bg-slate-700"
+          className="bg-white py-36 px-10 h-[10rem] w-[20rem] mr-[30px] flex flex-col justify-center items-center rounded-[10px] shadow-md mb-5 dark:bg-slate-700"
           style={{ boxShadow: "0 4px 6px rgba(255, 165, 0, 0.5)" }}
         >
           <Image src={about1} height={150} width={150} alt="onephoto" />
@@ -50,7 +50,7 @@ export default function About({
           </p>
         </div>
         <div
-          className="bg-white py-36 px-10 h-[160px] w-[350px] mr-[30px] flex flex-col justify-center items-center rounded-[10px] shadow-md mb-5 dark:bg-slate-700"
+          className="bg-white py-36 px-10 h-[10rem] w-[20rem] mr-[30px] flex flex-col justify-center items-center rounded-[10px] shadow-md mb-5 dark:bg-slate-700"
           style={{ boxShadow: "0 4px 6px rgba(255, 165, 0, 0.5)" }}
         >
           <Image src={about1} height={150} width={150} alt="onephoto" />
@@ -62,7 +62,7 @@ export default function About({
           </p>
         </div>
         <div
-          className="bg-white py-36 px-10 h-[160px] w-[350px] mr-[30px] flex flex-col justify-center items-center rounded-[10px] shadow-md mb-5 dark:bg-slate-700"
+          className="bg-white py-36 px-10 h-[10rem] w-[20rem] mr-[30px] flex flex-col justify-center items-center rounded-[10px] shadow-md mb-5 dark:bg-slate-700"
           style={{ boxShadow: "0 4px 6px rgba(255, 165, 0, 0.5)" }}
         >
           <Image src={about1} height={150} width={150} alt="onephoto" />
