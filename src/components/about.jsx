@@ -13,7 +13,7 @@ export default function About({
   return (
     <div id="about-container" className="relative p-4 mb-4">
       <div className="flex justify-center items-center">
-        <button className="mt-[90px] mb-4 bg-orange-200 hover:bg-blue-600 px-4 py-1 rounded-2xl text-orange-500 hover:text-black h-8 w-28 font-black text-xs uppercase cursor-pointer ">
+        <button className="mt-24 mb-4 bg-orange-200 hover:bg-blue-600 px-4 py-1 rounded-2xl text-orange-500 hover:text-black h-8 w-28 font-black text-xs uppercase cursor-pointer">
           ABOUT
         </button>
       </div>
@@ -36,40 +36,40 @@ export default function About({
         </p>
       </div>
 
-      <div className="flex flex-col sm:flex-row justify-center items-center mt-[50px] ml-[28px]">
+      <div className="flex flex-col sm:flex-row justify-center items-center mt-12">
         <div
-          className="bg-white py-36 px-10 h-[10rem] w-[20rem] mr-[30px] flex flex-col justify-center items-center rounded-[10px] shadow-md mb-5 dark:bg-slate-700"
+          className="bg-white py-12 px-6 h-64 w-72 sm:w-80 lg:w-96 mr-0 sm:mr-6 flex flex-col justify-center items-center rounded-xl shadow-md mb-5 dark:bg-slate-700"
           style={{ boxShadow: "0 4px 6px rgba(255, 165, 0, 0.5)" }}
         >
           <Image src={about1} height={150} width={150} alt="onephoto" />
-          <p className="font-medium text-3xl leading-[50px] text-blueCardTitle capitalize dark:text-gray-100">
+          <p className="font-medium text-xl sm:text-2xl lg:text-3xl leading-10 text-blueCardTitle capitalize dark:text-gray-100">
             {cardTitle1}
           </p>
-          <p className="text-sm leading-8 text-center text-blueCardSubTitle dark:text-white">
+          <p className="text-xs sm:text-sm lg:text-base leading-6 text-center text-blueCardSubTitle dark:text-white">
             {cardSubText1}
           </p>
         </div>
         <div
-          className="bg-white py-36 px-10 h-[10rem] w-[20rem] mr-[30px] flex flex-col justify-center items-center rounded-[10px] shadow-md mb-5 dark:bg-slate-700"
+          className="bg-white py-12 px-6 h-64 w-72 sm:w-80 lg:w-96 mr-0 sm:mr-6 flex flex-col justify-center items-center rounded-xl shadow-md mb-5 dark:bg-slate-700"
           style={{ boxShadow: "0 4px 6px rgba(255, 165, 0, 0.5)" }}
         >
           <Image src={about1} height={150} width={150} alt="onephoto" />
-          <p className="font-medium text-3xl leading-[50px] text-blueCardTitle capitalize dark:text-gray-100">
+          <p className="font-medium text-xl sm:text-2xl lg:text-3xl leading-10 text-blueCardTitle capitalize dark:text-gray-100">
             {cardTitle2}
           </p>
-          <p className="text-sm leading-8 text-center text-blueCardSubTitle dark:text-white">
+          <p className="text-xs sm:text-sm lg:text-base leading-6 text-center text-blueCardSubTitle dark:text-white">
             {cardSubText2}
           </p>
         </div>
         <div
-          className="bg-white py-36 px-10 h-[10rem] w-[20rem] mr-[30px] flex flex-col justify-center items-center rounded-[10px] shadow-md mb-5 dark:bg-slate-700"
+          className="bg-white py-12 px-6 h-64 w-72 sm:w-80 lg:w-96 flex flex-col justify-center items-center rounded-xl shadow-md mb-5 dark:bg-slate-700"
           style={{ boxShadow: "0 4px 6px rgba(255, 165, 0, 0.5)" }}
         >
           <Image src={about1} height={150} width={150} alt="onephoto" />
-          <p className="font-medium text-3xl leading-[50px] text-blueCardTitle capitalize dark:text-gray-100">
+          <p className="font-medium text-xl sm:text-2xl lg:text-3xl leading-10 text-blueCardTitle capitalize dark:text-gray-100">
             {cardTitle3}
           </p>
-          <p className="text-sm leading-8 text-center text-blueCardSubTitle dark:text-white">
+          <p className="text-xs sm:text-sm lg:text-base leading-6 text-center text-blueCardSubTitle dark:text-white">
             {cardSubText3}
           </p>
         </div>
