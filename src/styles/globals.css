@@ -29,7 +29,7 @@
 /* scroll bar mozilla chrome etc. */
 * {
   scrollbar-width: thin;
-  /* scrollbar-color: #3072ff #ffffff; */
+  scrollbar-color: orange #ffffff;
 }
 
 *::-webkit-scrollbar {
@@ -68,27 +68,9 @@ body {
   overflow-x: hidden;
   font-family: "Poppins", sans-serif;
   scroll-behavior: smooth;
-  /* background-color: #f7f8fa; */
 }
 
 /* dropdown whthin dropdown */
-
-/* General Styles */
-body {
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Dropdown Menu Styles */
-/* General Styles */
-body {
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Dropdown Menu Styles */
-.dropdown {
-  float: left;
-  position: relative;
-}
 
 .dropdown .dropbtn {
   font-size: 16px;
@@ -105,20 +87,41 @@ body {
   position: absolute;
   background-color: var(--dropdown-bg-color);
   color: var(--dropdown-text-color);
-  min-width: 160px;
+  min-width: 200px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  left: 0;
+  top: 100%;
+  z-index: 10;
 }
 
 .dropdown-two {
   cursor: pointer;
   display: none;
   position: absolute;
-  right: 160px;
-  top: 0px;
-  min-width: 280px;
   background-color: var(--dropdown-bg-color);
   color: var(--dropdown-text-color);
+  min-width: 300px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  right: 100%;
+  top: 15px;
+  z-index: 10;
+}
+
+.dropdown-three {
+  cursor: pointer;
+  display: none;
+  position: absolute;
+  background-color: var(--dropdown-bg-color);
+  color: var(--dropdown-text-color);
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  right: 100%;
+  top: 15px;
+  z-index: 10;
+}
+
+.dropdown-three li a {
+  display: block;
 }
 
 .dropdown:hover .dropdown-one,
@@ -126,24 +129,14 @@ body {
   display: block;
 }
 
-.dropdown-one .dItem {
-  color: inherit;
-  padding: 12px 16px;
+.dropdown-two:hover .dropdown-three {
   display: block;
-  text-align: left;
 }
 
-.dropdown-one .dItem:hover,
-.dropdown-two a:hover {
-  background-color: var(--dropdown-hover-bg-color);
-}
-
-/* Container Styles */
-.container {
-  max-width: 800px;
-  height: 800px;
-  background-color: white;
-  margin: 10px auto 0 auto;
+.dropdown-one .dItem,
+.dropdown-two .dItem,
+.dropdown-three .dItem {
+  padding: 12px 16px;
 }
 
 /* Light Mode */

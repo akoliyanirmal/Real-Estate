@@ -4,56 +4,39 @@ import logo from "../assets/images/logo.png";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import Image from "next/image";
 import ThemeChanger from "./themeChanger";
-import { FaLongArrowAltDown, FaLongArrowAltUp } from "react-icons/fa";
+import {
+  FaAngleDown,
+  FaAngleUp,
+  FaAngleLeft,
+  FaAngleRight,
+} from "react-icons/fa";
 
 const Header = () => {
   const [header, setHeader] = useState(false);
-  const [dropdown, setDropdown] = useState(false);
-  const [subDropdown, setSubDropdown] = useState(false);
+  const [projectDropdown, setProjectDropdown] = useState(false);
+  const [residentialDropdown, setResidentialDropdown] = useState(false);
+  const [beachResortDropdown, setBeachResortDropdown] = useState(false);
 
   const handleHeader = () => {
     setHeader(!header);
-    setDropdown(false);
-    setSubDropdown(false);
-  };
-
-  const handleDropdown = () => {
-    setDropdown(!dropdown);
-    setSubDropdown(false);
-  };
-
-  const handleSubDropdown = () => {
-    setSubDropdown(!subDropdown);
   };
 
   const handleMobileHeader = () => {
     setHeader(false);
-    setDropdown(false);
-    setSubDropdown(false);
+    setProjectDropdown(false);
+    setResidentialDropdown(false);
+    setBeachResortDropdown(false);
   };
 
   return (
     <div className="fixed top-0 left-0 w-full h-20 bg-white dark:bg-gray-900 shadow-xl flex items-center z-40 ease-in duration-300">
       <div className="mx-auto px-4 flex justify-between items-center w-full">
         {/* Logo */}
-        <div className="flex justify-start">
+        <div className="flex justify-start items-center">
           <Link href="/">
-            <Image height={80} width={80} src={logo} alt="logo" />
+            <Image height={80} width={80} src={logo} alt="Ropsan" />
           </Link>
-        </div>
-
-        {/* ThemeChanger - center on mobile */}
-        <div className="flex-1 flex justify-center sm:hidden">
-          <ThemeChanger />
-        </div>
-
-        {/* Mobile Menu Icon */}
-        <div className="block sm:hidden p-4" onClick={handleHeader}>
-          {header ? (
-            <AiOutlineClose size={30} className="text-black dark:text-white" />
-          ) : (
-            <AiOutlineMenu size={30} className="text-black dark:text-white" />
-          )}
+          <div className="flex items-center ml-2">Ropsan</div>
         </div>
 
         {/* Navbar Links and ThemeChanger - desktop */}
@@ -62,75 +45,92 @@ const Header = () => {
             <li className="hover:text-orange-500">
               <Link href="/">Home</Link>
             </li>
-            <li className="relative group">
-              <button
-                onClick={handleDropdown}
-                className="flex items-center hover:text-orange-500"
-              >
-                Project{" "}
-                {dropdown ? (
-                  <FaLongArrowAltUp className="ml-1 transform rotate-0" />
-                ) : (
-                  <FaLongArrowAltDown className="ml-1 transform rotate-0" />
-                )}
-              </button>
-              {dropdown && (
-                <div className="absolute mt-2 bg-white dark:bg-gray-800 rounded-md shadow-lg py-2 w-48">
-                  <button
-                    onClick={handleSubDropdown}
-                    className="flex items-center justify-between w-full px-4 py-2 text-left hover:text-orange-500"
+
+            <ul className="relative group">
+              <div className="dropdown">
+                <li className="dropbtn hover:text-orange-500 cursor-pointer flex items-center">
+                  Project{" "}
+                  <FaAngleDown
+                    className={`ml-1 ${
+                      projectDropdown ? "rotate-180" : "rotate-0"
+                    }`}
+                  />
+                </li>
+                <div className="dropdown-one">
+                  <div
+                    id="link1"
+                    className="dItem hover:text-orange-500 flex items-center"
                   >
-                    Residential{" "}
-                    {subDropdown ? (
-                      <FaLongArrowAltUp className="ml-1 transform rotate-0" />
-                    ) : (
-                      <FaLongArrowAltDown className="ml-1 transform rotate-0" />
-                    )}
-                  </button>
-                  {subDropdown && (
-                    <ul className="pl-4 space-y-2">
-                      <li className="hover:text-orange-500">
-                        Dipla wellness Beach Resort
-                      </li>
-                      <li className="hover:text-orange-500">
-                        <a
-                          href="/assets/brochure.pdf"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          view pdf
-                        </a>
-                      </li>
-                      <li className="hover:text-orange-500">
-                        <a href="/assets/brochure.pdf" download>
-                          download pdf
-                        </a>
+                    <FaAngleLeft className="mr-1" />
+                    <span>Residential</span>
+                    <ul className="dropdown-two">
+                      <li
+                        id="link1"
+                        className="dItem hover:text-orange-500 flex items-center"
+                      >
+                        <FaAngleLeft className="mr-1" />
+                        <span>Dipla wellness Beach Resort</span>
+                        <ul className="dropdown-three">
+                          <li className="dItem hover:text-orange-500">
+                            <a
+                              href="/assets/brochure.pdf"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              View
+                            </a>
+                          </li>
+                          <li className="dItem hover:text-orange-500">
+                            <a href="/assets/brochure.pdf" download>
+                              Download
+                            </a>
+                          </li>
+                        </ul>
                       </li>
                     </ul>
-                  )}
-                  <button className="w-full text-left px-4 py-2 hover:text-orange-500">
-                    Industrial
-                  </button>
-                  <button className="w-full text-left px-4 py-2 hover:text-orange-500">
-                    Commercial
-                  </button>
+                  </div>
+                  <div className="dItem hover:text-orange-500 flex items-center">
+                    <FaAngleLeft className="mr-1" />
+                    <span>Industrial</span>
+                  </div>
+                  <div className="dItem hover:text-orange-500 flex items-center">
+                    <FaAngleLeft className="mr-1" />
+                    <span>Commercial</span>
+                  </div>
                 </div>
-              )}
-            </li>
+              </div>
+            </ul>
+
             <li className="hover:text-orange-500">
               <Link href="#about-container">About</Link>
             </li>
             <li className="hover:text-orange-500">
               <Link href="#contact">Contact</Link>
             </li>
-            <li>
+
+            <div>
               <ThemeChanger />
-            </li>
+            </div>
           </ul>
         </div>
       </div>
 
       {/* Mobile Menu */}
+
+      {/* ThemeChanger - icon mobile */}
+      <div className="flex-1 flex justify-center sm:hidden">
+        <ThemeChanger />
+      </div>
+
+      {/* Mobile Menu Icon */}
+      <div className="block sm:hidden p-4" onClick={handleHeader}>
+        {header ? (
+          <AiOutlineClose size={30} className="text-black dark:text-white" />
+        ) : (
+          <AiOutlineMenu size={30} className="text-black dark:text-white" />
+        )}
+      </div>
+
       <div
         className={`${
           header ? "left-0" : "-left-full"
@@ -142,59 +142,69 @@ const Header = () => {
               Home
             </Link>
           </li>
-          <li className="text-2xl hover:text-orange-500">
-            <button
-              onClick={handleDropdown}
-              className="w-full flex items-center justify-center"
-            >
-              Project{" "}
-              {dropdown ? (
-                <FaLongArrowAltUp className="ml-2 transform rotate-0" />
-              ) : (
-                <FaLongArrowAltDown className="ml-2 transform rotate-0" />
-              )}
-            </button>
-            {dropdown && (
-              <ul className="space-y-4 text-center">
-                <li className="text-xl hover:text-orange-500">
-                  <button
-                    onClick={handleSubDropdown}
-                    className="w-full flex items-center justify-center"
+          <li
+            className="text-2xl hover:text-orange-500 cursor-pointer flex justify-center"
+            onClick={() => setProjectDropdown(!projectDropdown)}
+          >
+            Project{" "}
+            <FaAngleDown
+              className={`ml-1 ${projectDropdown ? "rotate-180" : "rotate-0"}`}
+            />
+          </li>
+          {projectDropdown && (
+            <ul className="space-y-4">
+              <li
+                className="text-xl hover:text-orange-500 cursor-pointer flex justify-center"
+                onClick={() => setResidentialDropdown(!residentialDropdown)}
+              >
+                Residential{" "}
+                <FaAngleDown
+                  className={`ml-1 ${
+                    residentialDropdown ? "rotate-180" : "rotate-0"
+                  }`}
+                />
+              </li>
+              {residentialDropdown && (
+                <ul className="space-y-2">
+                  <li
+                    className="text-lg hover:text-orange-500 cursor-pointer flex justify-center"
+                    onClick={() => setBeachResortDropdown(!beachResortDropdown)}
                   >
-                    Residential{" "}
-                    {subDropdown ? (
-                      <FaLongArrowAltUp className="ml-2 transform rotate-0" />
-                    ) : (
-                      <FaLongArrowAltDown className="ml-2 transform rotate-0" />
-                    )}
-                  </button>
-                  {subDropdown && (
-                    <ul className="space-y-2 text-center">
-                      <li className="hover:text-orange-500">
-                        Dipla wellness Beach Resort
-                      </li>
-                      <li className="hover:text-orange-500">
+                    Dipla wellness Beach Resort{" "}
+                    <FaAngleDown
+                      className={`ml-1 ${
+                        beachResortDropdown ? "rotate-180" : "rotate-0"
+                      }`}
+                    />
+                  </li>
+                  {beachResortDropdown && (
+                    <ul className="space-y-2">
+                      <li className="text-base hover:text-orange-500 flex justify-center">
                         <a
                           href="/assets/brochure.pdf"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          view pdf
+                          View
                         </a>
                       </li>
-                      <li className="hover:text-orange-500">
+                      <li className="text-base hover:text-orange-500 flex justify-center">
                         <a href="/assets/brochure.pdf" download>
-                          download pdf
+                          Download
                         </a>
                       </li>
                     </ul>
                   )}
-                </li>
-                <li className="text-xl hover:text-orange-500">Industrial</li>
-                <li className="text-xl hover:text-orange-500">Commercial</li>
-              </ul>
-            )}
-          </li>
+                </ul>
+              )}
+              <li className="text-xl hover:text-orange-500 flex justify-center">
+                Industrial
+              </li>
+              <li className="text-xl hover:text-orange-500 flex justify-center">
+                Commercial
+              </li>
+            </ul>
+          )}
           <li className="text-2xl hover:text-orange-500">
             <Link href="#about-container" onClick={handleMobileHeader}>
               About
