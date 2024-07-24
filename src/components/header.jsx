@@ -4,15 +4,11 @@ import logo from "../assets/images/logo.png";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import Image from "next/image";
 import ThemeChanger from "./themeChanger";
-import {
-  FaAngleDown,
-  FaAngleUp,
-  FaAngleLeft,
-  FaAngleRight,
-} from "react-icons/fa";
+import { FaAngleDown, FaAngleLeft } from "react-icons/fa";
 
 const Header = () => {
   const [header, setHeader] = useState(false);
+
   const [projectDropdown, setProjectDropdown] = useState(false);
   const [residentialDropdown, setResidentialDropdown] = useState(false);
   const [beachResortDropdown, setBeachResortDropdown] = useState(false);
@@ -143,7 +139,7 @@ const Header = () => {
             </Link>
           </li>
           <li
-            className="text-2xl hover:text-orange-500 cursor-pointer flex justify-center"
+            className="text-2xl hover:text-orange-500 cursor-pointer flex justify-center relative left-3"
             onClick={() => setProjectDropdown(!projectDropdown)}
           >
             Project{" "}
@@ -154,7 +150,7 @@ const Header = () => {
           {projectDropdown && (
             <ul className="space-y-4">
               <li
-                className="text-xl hover:text-orange-500 cursor-pointer flex justify-center"
+                className="text-xl hover:text-orange-500 cursor-pointer flex justify-center relative left-3"
                 onClick={() => setResidentialDropdown(!residentialDropdown)}
               >
                 Residential{" "}
@@ -167,7 +163,7 @@ const Header = () => {
               {residentialDropdown && (
                 <ul className="space-y-2">
                   <li
-                    className="text-lg hover:text-orange-500 cursor-pointer flex justify-center"
+                    className="text-lg hover:text-orange-500 cursor-pointer flex justify-center relative left-2"
                     onClick={() => setBeachResortDropdown(!beachResortDropdown)}
                   >
                     Dipla wellness Beach Resort{" "}
@@ -179,24 +175,20 @@ const Header = () => {
                   </li>
                   {beachResortDropdown && (
                     <ul className="space-y-2">
-                      <li className="text-base hover:text-orange-500 flex justify-center">
+                      <li className="text-base hover:text-orange-500 flex justify-center pt-3 pb-3">
                         <a
                           href="/assets/brochure.pdf"
-                          target="_blank"
                           rel="noopener noreferrer"
+                          target="_blank"
                         >
-                          View
-                        </a>
-                      </li>
-                      <li className="text-base hover:text-orange-500 flex justify-center">
-                        <a href="/assets/brochure.pdf" download>
-                          Download
+                          View/Download
                         </a>
                       </li>
                     </ul>
                   )}
                 </ul>
               )}
+
               <li className="text-xl hover:text-orange-500 flex justify-center">
                 Industrial
               </li>
