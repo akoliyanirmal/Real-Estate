@@ -1,9 +1,23 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import banner from "../assets/images/banner.jpg";
+// import banner2 from "../assets/images/banner2.jpg";
+// import banner3 from "../assets/images/banner3.jpg";
+// import banner4 from "../assets/images/banner4.jpg";
+// import banner5 from "../assets/images/banner5.jpg";
+// import banner6 from "../assets/images/banner6.jpg";
+// import banner7 from "../assets/images/banner7.jpg";
+// import banner8 from "../assets/images/banner8.jpg";
+// import banner9 from "../assets/images/banner9.jpg";
+// import banner10 from "../assets/images/banner10.jpg";
+// import banner11 from "../assets/images/banner11.jpg";
+// import banner12 from "../assets/images/banner12.jpg";
 
 const Photos = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [fullScreenMode, setFullScreenMode] = useState(false);
+  const [currentFullScreenSlide, setCurrentFullScreenSlide] = useState(0);
+
   const totalSlides = 12; // Number of images
 
   const nextSlide = () => {
@@ -13,6 +27,43 @@ const Photos = () => {
   const prevSlide = () => {
     setCurrentSlide((prevSlide) => (prevSlide - 1 + totalSlides) % totalSlides);
   };
+
+  const openFullScreen = (index) => {
+    setFullScreenMode(true);
+    setCurrentFullScreenSlide(index);
+    document.body.style.overflow = "hidden"; // Prevent body scroll
+  };
+
+  const closeFullScreen = () => {
+    setFullScreenMode(false);
+    document.body.style.overflow = "auto"; // Allow body scroll
+  };
+
+  const nextFullScreenSlide = () => {
+    setCurrentFullScreenSlide((prevSlide) => (prevSlide + 1) % totalSlides);
+  };
+
+  const prevFullScreenSlide = () => {
+    setCurrentFullScreenSlide(
+      (prevSlide) => (prevSlide - 1 + totalSlides) % totalSlides
+    );
+  };
+
+  // Define images for each slide
+  const images = [
+    banner,
+    banner,
+    banner,
+    banner,
+    banner,
+    banner,
+    banner,
+    banner,
+    banner,
+    banner,
+    banner,
+    banner,
+  ];
 
   return (
     <div className="relative p-4 mb-4">
@@ -31,7 +82,6 @@ const Photos = () => {
       </div>
 
       <div className="flex justify-center items-center relative max-w-[1300px] w-full p-5">
-        {/* Navigation buttons */}
         <button
           onClick={prevSlide}
           className="bg-gray-300 p-2 rounded-full shadow-lg hover:bg-gray-400"
@@ -44,138 +94,24 @@ const Photos = () => {
             className="flex transition-transform duration-500"
             style={{ transform: `translateX(-${currentSlide * 100}%)` }}
           >
-            <div className="flex-shrink-0 w-full">
-              <a href="link-to-page-1">
-                <Image
-                  src={banner}
-                  alt="photo 1"
-                  className="w-full h-auto max-h-[600px] object-cover rounded-lg"
-                  width={1000}
-                  height={600}
-                />
-              </a>
-            </div>
-            <div className="flex-shrink-0 w-full">
-              <a href="link-to-page-2">
-                <Image
-                  src={banner}
-                  alt="photo 2"
-                  className="w-full h-auto max-h-[600px] object-cover rounded-lg"
-                  width={1000}
-                  height={600}
-                />
-              </a>
-            </div>
-            <div className="flex-shrink-0 w-full">
-              <a href="link-to-page-3">
-                <Image
-                  src={banner}
-                  alt="photo 3"
-                  className="w-full h-auto max-h-[600px] object-cover rounded-lg"
-                  width={1000}
-                  height={600}
-                />
-              </a>
-            </div>
-            <div className="flex-shrink-0 w-full">
-              <a href="link-to-page-4">
-                <Image
-                  src={banner}
-                  alt="photo 4"
-                  className="w-full h-auto max-h-[600px] object-cover rounded-lg"
-                  width={1000}
-                  height={600}
-                />
-              </a>
-            </div>
-            <div className="flex-shrink-0 w-full">
-              <a href="link-to-page-5">
-                <Image
-                  src={banner}
-                  alt="photo 5"
-                  className="w-full h-auto max-h-[600px] object-cover rounded-lg"
-                  width={1000}
-                  height={600}
-                />
-              </a>
-            </div>
-            <div className="flex-shrink-0 w-full">
-              <a href="link-to-page-6">
-                <Image
-                  src={banner}
-                  alt="photo 6"
-                  className="w-full h-auto max-h-[600px] object-cover rounded-lg"
-                  width={1000}
-                  height={600}
-                />
-              </a>
-            </div>
-            <div className="flex-shrink-0 w-full">
-              <a href="link-to-page-7">
-                <Image
-                  src={banner}
-                  alt="photo 7"
-                  className="w-full h-auto max-h-[600px] object-cover rounded-lg"
-                  width={1000}
-                  height={600}
-                />
-              </a>
-            </div>
-            <div className="flex-shrink-0 w-full">
-              <a href="link-to-page-8">
-                <Image
-                  src={banner}
-                  alt="photo 8"
-                  className="w-full h-auto max-h-[600px] object-cover rounded-lg"
-                  width={1000}
-                  height={600}
-                />
-              </a>
-            </div>
-            <div className="flex-shrink-0 w-full">
-              <a href="link-to-page-9">
-                <Image
-                  src={banner}
-                  alt="photo 9"
-                  className="w-full h-auto max-h-[600px] object-cover rounded-lg"
-                  width={1000}
-                  height={600}
-                />
-              </a>
-            </div>
-            <div className="flex-shrink-0 w-full">
-              <a href="link-to-page-10">
-                <Image
-                  src={banner}
-                  alt="photo 10"
-                  className="w-full h-auto max-h-[600px] object-cover rounded-lg"
-                  width={1000}
-                  height={600}
-                />
-              </a>
-            </div>
-            <div className="flex-shrink-0 w-full">
-              <a href="link-to-page-11">
-                <Image
-                  src={banner}
-                  alt="photo 11"
-                  className="w-full h-auto max-h-[600px] object-cover rounded-lg"
-                  width={1000}
-                  height={600}
-                />
-              </a>
-            </div>
-            <div className="flex-shrink-0 w-full">
-              <a href="link-to-page-12">
-                <Image
-                  src={banner}
-                  alt="photo 12"
-                  className="w-full h-auto max-h-[600px] object-cover rounded-lg"
-                  width={1000}
-                  height={600}
-                />
-              </a>
-            </div>
+            {images.map((src, index) => (
+              <div key={index} className="flex-shrink-0 w-full">
+                <a
+                  onClick={() => openFullScreen(index)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <Image
+                    src={src}
+                    alt={`photo ${index + 1}`}
+                    className="w-full h-auto max-h-[600px] object-cover rounded-lg"
+                    width={1000}
+                    height={600}
+                    // Adjust sizes for different screen sizes
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                  />
+                </a>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -186,6 +122,40 @@ const Photos = () => {
           &#10095;
         </button>
       </div>
+
+      {/* Full Screen Mode */}
+      {fullScreenMode && (
+        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 flex justify-center items-center z-50">
+          <button
+            onClick={closeFullScreen}
+            className="absolute top-4 right-4 text-white text-2xl font-bold"
+          >
+            &times;
+          </button>
+
+          <button
+            onClick={prevFullScreenSlide}
+            className="absolute left-4 text-white text-3xl font-bold"
+          >
+            &#10094;
+          </button>
+
+          <button
+            onClick={nextFullScreenSlide}
+            className="absolute right-4 text-white text-3xl font-bold"
+          >
+            &#10095;
+          </button>
+
+          <Image
+            src={images[currentFullScreenSlide]}
+            alt={`full-screen photo ${currentFullScreenSlide + 1}`}
+            className="w-auto h-auto max-h-full object-contain"
+            width={1600}
+            height={900}
+          />
+        </div>
+      )}
     </div>
   );
 };

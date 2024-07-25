@@ -11,6 +11,8 @@ import scrollIcon from "../assets/icons/topArrowIcon.png";
 
 import Footer from "@/components/footer";
 import Hero from "@/components/hero";
+import Photos from "../components/form";
+import Home from "../components/form";
 
 const HomePage = () => {
   const [showButton, setShowButton] = useState(false);
@@ -61,7 +63,7 @@ const HomePage = () => {
         {/* <Deals /> */}
         {/* <Review /> */}
         <Insta />
-        <Form />
+        <Home />
         <Footer />
         {showButton && (
           <div className="fixed bottom-24 right-10 z-50">
