@@ -1,17 +1,11 @@
 import React, { useState } from "react";
 import Image from "next/image";
+import { useSwipeable } from "react-swipeable";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import { ImCross } from "react-icons/im";
+
 import banner from "../assets/images/banner.jpg";
-// import banner2 from "../assets/images/banner2.jpg";
-// import banner3 from "../assets/images/banner3.jpg";
-// import banner4 from "../assets/images/banner4.jpg";
-// import banner5 from "../assets/images/banner5.jpg";
-// import banner6 from "../assets/images/banner6.jpg";
-// import banner7 from "../assets/images/banner7.jpg";
-// import banner8 from "../assets/images/banner8.jpg";
-// import banner9 from "../assets/images/banner9.jpg";
-// import banner10 from "../assets/images/banner10.jpg";
-// import banner11 from "../assets/images/banner11.jpg";
-// import banner12 from "../assets/images/banner12.jpg";
+import heroBackground from "../assets/images/heroBackground.png";
 
 const Photos = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -49,20 +43,34 @@ const Photos = () => {
     );
   };
 
+  const handlers = useSwipeable({
+    onSwipedLeft: () => nextSlide(),
+    onSwipedRight: () => prevSlide(),
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true,
+  });
+
+  const fullScreenHandlers = useSwipeable({
+    onSwipedLeft: () => nextFullScreenSlide(),
+    onSwipedRight: () => prevFullScreenSlide(),
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true,
+  });
+
   // Define images for each slide
   const images = [
     banner,
+    heroBackground,
     banner,
+    heroBackground,
     banner,
+    heroBackground,
     banner,
+    heroBackground,
     banner,
+    heroBackground,
     banner,
-    banner,
-    banner,
-    banner,
-    banner,
-    banner,
-    banner,
+    heroBackground,
   ];
 
   return (
@@ -81,21 +89,27 @@ const Photos = () => {
         </div>
       </div>
 
-      <div className="flex justify-center items-center relative max-w-[1300px] w-full p-5">
+      <div className="flex justify-center items-center relative w-full py-5 sm:p-5">
         <button
           onClick={prevSlide}
-          className="bg-gray-300 p-2 rounded-full shadow-lg hover:bg-gray-400"
+          className="bg-[#EFE1D1] dark:bg-[#334756] text-black dark:text-white p-[0.3rem] sm:p-2 rounded-full shadow-lg"
         >
-          &#10094;
+          <FaAngleLeft />
         </button>
 
-        <div className="relative overflow-hidden w-full mx-2">
+        <div
+          {...handlers}
+          className="relative overflow-hidden w-full mx-3 sm:mx-10"
+        >
           <div
             className="flex transition-transform duration-500"
             style={{ transform: `translateX(-${currentSlide * 100}%)` }}
           >
             {images.map((src, index) => (
-              <div key={index} className="flex-shrink-0 w-full">
+              <div
+                key={index}
+                className="flex-shrink-0 w-full h-[300px] sm:h-[600px]"
+              >
                 <a
                   onClick={() => openFullScreen(index)}
                   style={{ cursor: "pointer" }}
@@ -103,11 +117,9 @@ const Photos = () => {
                   <Image
                     src={src}
                     alt={`photo ${index + 1}`}
-                    className="w-full h-auto max-h-[600px] object-cover rounded-lg"
+                    className="w-[100%] h-[100%] object-cover"
                     width={1000}
                     height={600}
-                    // Adjust sizes for different screen sizes
-                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
                   />
                 </a>
               </div>
@@ -117,43 +129,59 @@ const Photos = () => {
 
         <button
           onClick={nextSlide}
-          className="bg-gray-300 p-2 rounded-full shadow-lg hover:bg-gray-400"
+          className="p-[0.3rem] sm:p-2 rounded-full shadow-lg bg-[#EFE1D1] dark:bg-[#334756] text-black dark:text-white"
         >
-          &#10095;
+          <FaAngleRight />
         </button>
       </div>
 
       {/* Full Screen Mode */}
       {fullScreenMode && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 flex justify-center items-center z-50">
-          <button
-            onClick={closeFullScreen}
-            className="absolute top-4 right-4 text-white text-2xl font-bold"
+        <div
+          className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 flex justify-center items-center z-50"
+          onClick={closeFullScreen}
+        >
+          <div
+            {...fullScreenHandlers}
+            className="relative w-full h-full flex items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
           >
-            &times;
-          </button>
+            <div className="relative">
+              <Image
+                src={images[currentFullScreenSlide]}
+                alt={`full-screen photo ${currentFullScreenSlide + 1}`}
+                className="max-h-[800px] object-contain"
+                width={1600}
+                height={900}
+              />
+              <button
+                onClick={closeFullScreen}
+                className="absolute top-[-32px] right-[1px] text-white"
+              >
+                <ImCross className="m-2" />
+              </button>
+            </div>
 
-          <button
-            onClick={prevFullScreenSlide}
-            className="absolute left-4 text-white text-3xl font-bold"
-          >
-            &#10094;
-          </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                prevFullScreenSlide();
+              }}
+              className="absolute left-4 text-white text-3xl font-bold"
+            >
+              <FaAngleLeft />
+            </button>
 
-          <button
-            onClick={nextFullScreenSlide}
-            className="absolute right-4 text-white text-3xl font-bold"
-          >
-            &#10095;
-          </button>
-
-          <Image
-            src={images[currentFullScreenSlide]}
-            alt={`full-screen photo ${currentFullScreenSlide + 1}`}
-            className="w-auto h-auto max-h-full object-contain"
-            width={1600}
-            height={900}
-          />
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                nextFullScreenSlide();
+              }}
+              className="absolute right-4 text-white text-3xl font-bold"
+            >
+              <FaAngleRight />
+            </button>
+          </div>
         </div>
       )}
     </div>
