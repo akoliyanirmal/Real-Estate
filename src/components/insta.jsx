@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import { useSwipeable } from "react-swipeable";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
+import { useSwipeable } from "react-swipeable";
 
 import banner from "../assets/images/banner.jpg";
 import heroBackground from "../assets/images/heroBackground.png";
@@ -43,20 +43,6 @@ const Photos = () => {
     );
   };
 
-  const handlers = useSwipeable({
-    onSwipedLeft: () => nextSlide(),
-    onSwipedRight: () => prevSlide(),
-    preventDefaultTouchmoveEvent: true,
-    trackMouse: true,
-  });
-
-  const fullScreenHandlers = useSwipeable({
-    onSwipedLeft: () => nextFullScreenSlide(),
-    onSwipedRight: () => prevFullScreenSlide(),
-    preventDefaultTouchmoveEvent: true,
-    trackMouse: true,
-  });
-
   // Define images for each slide
   const images = [
     banner,
@@ -72,6 +58,14 @@ const Photos = () => {
     banner,
     heroBackground,
   ];
+
+  // Swipe handlers
+  const handlers = useSwipeable({
+    onSwipedLeft: nextFullScreenSlide,
+    onSwipedRight: prevFullScreenSlide,
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true,
+  });
 
   return (
     <div className="relative p-4 mb-4">
@@ -97,10 +91,7 @@ const Photos = () => {
           <FaAngleLeft />
         </button>
 
-        <div
-          {...handlers}
-          className="relative overflow-hidden w-full mx-3 sm:mx-10"
-        >
+        <div className="relative overflow-hidden w-full mx-3 sm:mx-10">
           <div
             className="flex transition-transform duration-500"
             style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -142,25 +133,26 @@ const Photos = () => {
           onClick={closeFullScreen}
         >
           <div
-            {...fullScreenHandlers}
-            className="relative w-full h-full flex items-center justify-center"
+            className="relative"
             onClick={(e) => e.stopPropagation()}
+            {...handlers} // Add swipe handlers
           >
-            <div className="relative">
-              <Image
-                src={images[currentFullScreenSlide]}
-                alt={`full-screen photo ${currentFullScreenSlide + 1}`}
-                className="max-h-[800px] object-contain"
-                width={1600}
-                height={900}
-              />
-              <button
-                onClick={closeFullScreen}
-                className="absolute top-[-32px] right-[1px] text-white"
-              >
-                <ImCross className="m-2" />
-              </button>
-            </div>
+            <Image
+              src={images[currentFullScreenSlide]}
+              alt={`full-screen photo ${currentFullScreenSlide + 1}`}
+              className="max-h-[800px] object-contain"
+              width={1600}
+              height={900}
+            />
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                closeFullScreen();
+              }}
+              className="absolute top-[-32px] right-[1px] text-white"
+            >
+              <ImCross className="m-2" />
+            </button>
 
             <button
               onClick={(e) => {
